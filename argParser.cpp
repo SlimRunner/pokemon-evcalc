@@ -6,18 +6,14 @@ argmap getArgs(int argc, char const *argv[]) {
     return argmap();
   }
   argmap comms;
-  bool parsing = false, first = true;
-  std::string k;
+  std::string k = "";
   vecstring v;
   for (int i = 1; i < argc; ++i) {
     if (argv[i][0] == '-') {
-      if (!first) {
-        comms.emplace(k, v);
-      }
-      first = false;
+      comms.emplace(k, v);
+      v.clear();
       k = std::string(argv[i]);
-      parsing = true;
-    } else if (parsing) {
+    } else {
       v.push_back(std::string(argv[i]));
     }
   }
