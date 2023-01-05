@@ -19,12 +19,14 @@ int main(int argc, char const *argv[]) {
   IO_USE;
   AP_USE;
   argmap params = getArgs(argc, argv);
-  if (hasKey("-v", params)) {
-    cout << "has -v command\n";
-    for (auto &&word : params.at("-v")) {
-      cout << word << " ";
+  for (auto const& pair : params) {
+    cout << pair.first << ": [";
+    bool first = true;
+    for (auto const& item : pair.second) {
+      cout << (first ? "" : ", ") << item;
+      first = false;
     }
-    cout << endl;
+    cout << "]\n";
   }
   /*
   PokeData database("pokedata.db");
