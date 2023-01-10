@@ -1,8 +1,10 @@
-#include "argParser.hpp"
 #include <fstream>
 #include <iostream>
 #include <sstream>
 #include <string>
+
+#include "Pokemon.hpp"
+#include "argParser.hpp"
 
 #define IO_USE                                                                 \
   using std::cout;                                                             \
@@ -15,27 +17,40 @@
   using ArgParser::getArgs;                                                    \
   using ArgParser::hasKey;
 
+std::ostream &operator<<(std::ostream &stream, const Poke::Stats &stats) {
+  stream << "HP: " << stats.hp << '\n'
+         << "Attack: " << stats.attack << '\n'
+         << "Defense: " << stats.defense << '\n'
+         << "Sp. Attack: " << stats.spAttack << '\n'
+         << "Sp. Defense: " << stats.spDefense << '\n'
+         << "Speed: " << stats.speed << '\n';
+  return stream;
+}
+
 int main(int argc, char const *argv[]) {
   IO_USE;
   AP_USE;
   argmap params = getArgs(argc, argv);
-  for (auto const& pair : params) {
+  for (auto const &pair : params) {
     cout << pair.first << ": [";
     bool first = true;
-    for (auto const& item : pair.second) {
+    for (auto const &item : pair.second) {
       cout << (first ? "" : ", ") << item;
       first = false;
     }
     cout << "]\n";
   }
+  Poke::Pokemon pokemon(100, Poke::Stats(76, 110, 70, 81, 70, 123),
+                        Poke::Stats(31, 31, 31, 31, 31, 31),
+                        Poke::Stats(252, 252, 252, 252, 252, 252));
+  cout << pokemon.getStats();
   /*
   PokeData database("pokedata.db");
   std::string query = "A pokemon name"
   Pokemon pokemon(database, query);
-  EvCalc calc(pokemon); // consider wrapping EvCalc in a parent class which can interact with terminal IO
-  cin << ...;
-  calc.pushEntry(...)
-  auto estimate = calc.getEstimates()
+  EvCalc calc(pokemon); // consider wrapping EvCalc in a parent class which can
+  interact with terminal IO cin << ...; calc.pushEntry(...) auto estimate =
+  calc.getEstimates()
   */
   return 0;
 }
