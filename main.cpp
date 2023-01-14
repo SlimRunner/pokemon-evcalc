@@ -19,11 +19,11 @@
 
 std::ostream &operator<<(std::ostream &stream, const Poke::Stats &stats) {
   stream << "HP: " << stats.hp << '\n'
-         << "Attack: " << stats.attack << '\n'
-         << "Defense: " << stats.defense << '\n'
-         << "Sp. Attack: " << stats.spAttack << '\n'
-         << "Sp. Defense: " << stats.spDefense << '\n'
-         << "Speed: " << stats.speed << '\n';
+         << "Attack: " << stats.atk << '\n'
+         << "Defense: " << stats.def << '\n'
+         << "Sp. Attack: " << stats.spAtk << '\n'
+         << "Sp. Defense: " << stats.spDef << '\n'
+         << "Speed: " << stats.spd << '\n';
   return stream;
 }
 
@@ -40,9 +40,9 @@ int main(int argc, char const *argv[]) {
     }
     cout << "]\n";
   }
-  Poke::Pokemon pokemon(100, Poke::Stats(76, 110, 70, 81, 70, 123),
-                        Poke::Stats(31, 31, 31, 31, 31, 31),
-                        Poke::Stats(252, 252, 252, 252, 252, 252));
+  Poke::Pokemon pokemon(77, Poke::Stats(76, 110, 70, 81, 70, 123),
+                        Poke::Stats(1, 18, 24, 3, 16, 31),
+                        Poke::Stats(93, 129, 126, 48, 25, 89));
   cout << pokemon.getStats();
   /*
   PokeData database("pokedata.db");

@@ -7,17 +7,17 @@ class Stats {
 private:
 public:
   const int hp;
-  const int attack;
-  const int defense;
-  const int spAttack;
-  const int spDefense;
-  const int speed;
+  const int atk;
+  const int def;
+  const int spAtk;
+  const int spDef;
+  const int spd;
 
-  Stats() : hp(0), attack(0), defense(0), spAttack(0), spDefense(0), speed(0) {
+  Stats() : hp(0), atk(0), def(0), spAtk(0), spDef(0), spd(0) {
     /* nothing to do */
   }
   Stats(int h, int a, int d, int sa, int sd, int sp)
-      : hp(h), attack(a), defense(d), spAttack(sa), spDefense(sd), speed(sp) {
+      : hp(h), atk(a), def(d), spAtk(sa), spDef(sd), spd(sp) {
     /* nothing to do */
   }
 };

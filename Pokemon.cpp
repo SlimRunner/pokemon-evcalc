@@ -11,38 +11,32 @@ int calcOther(int base, int iv, int ev, int lvl, float nat) {
 
 namespace Poke {
 
-Pokemon::Pokemon() : m_level(1), baseStats(), IVs(), EVs() {}
+Pokemon::Pokemon() : m_level(1), base(), IVs(), EVs() {}
 
-Pokemon::Pokemon(int lvl) : m_level(lvl), baseStats(), IVs(), EVs() {}
+Pokemon::Pokemon(int lvl) : m_level(lvl), base(), IVs(), EVs() {}
 
 Pokemon::Pokemon(int lvl, Stats base, Stats ivs, Stats evs)
-    : m_level(lvl), baseStats(base), IVs(ivs), EVs(evs) {}
+    : m_level(lvl), base(base), IVs(ivs), EVs(evs) {}
 
 Pokemon::Pokemon(int lvl, Stats base, Stats ivs, Stats evs, Stats fixed)
-    : m_level(lvl), baseStats(base), IVs(ivs), EVs(evs), fixModifier(fixed) {}
+    : m_level(lvl), base(base), IVs(ivs), EVs(evs), fixmod(fixed) {}
 
 Pokemon::~Pokemon() {}
 
 Stats Pokemon::getStats() {
-  const float nat = 1.1;
+  const float nat[5] = {1, 1, 1, 1, 1};
   return Stats(
-      (!fixModifier.hp ? calcHP(baseStats.hp, IVs.hp, EVs.hp, m_level)
-                       : fixModifier.hp),
-      (!fixModifier.attack
-           ? calcOther(baseStats.attack, IVs.attack, EVs.attack, m_level, nat)
-           : fixModifier.attack),
-      (!fixModifier.defense ? calcOther(baseStats.defense, IVs.defense,
-                                        EVs.defense, m_level, nat)
-                            : fixModifier.defense),
-      (!fixModifier.spAttack ? calcOther(baseStats.spAttack, IVs.spAttack,
-                                         EVs.spAttack, m_level, nat)
-                             : fixModifier.spAttack),
-      (!fixModifier.spDefense ? calcOther(baseStats.spDefense, IVs.spDefense,
-                                          EVs.spDefense, m_level, nat)
-                              : fixModifier.spDefense),
-      (!fixModifier.speed
-           ? calcOther(baseStats.speed, IVs.speed, EVs.speed, m_level, nat)
-           : fixModifier.speed));
+      (!fixmod.hp ? calcHP(base.hp, IVs.hp, EVs.hp, m_level) : fixmod.hp),
+      (!fixmod.atk ? calcOther(base.atk, IVs.atk, EVs.atk, m_level, nat[0])
+                   : fixmod.atk),
+      (!fixmod.def ? calcOther(base.def, IVs.def, EVs.def, m_level, nat[1])
+                   : fixmod.def),
+      (!fixmod.spAtk ? calcOther(base.spAtk, IVs.spAtk, EVs.spAtk, m_level, nat[2])
+                     : fixmod.spAtk),
+      (!fixmod.spDef ? calcOther(base.spDef, IVs.spDef, EVs.spDef, m_level, nat[3])
+                     : fixmod.spDef),
+      (!fixmod.spd ? calcOther(base.spd, IVs.spd, EVs.spd, m_level, nat[4])
+                   : fixmod.spd));
 }
 
 } // namespace Poke

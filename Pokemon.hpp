@@ -14,10 +14,10 @@ private:
   Characteristic m_character;
   */
 public:
-  Stats baseStats;
+  Stats base;
   Stats IVs;
   Stats EVs;
-  Stats fixModifier;
+  Stats fixmod;
 
   Pokemon();
   Pokemon(int lvl);
