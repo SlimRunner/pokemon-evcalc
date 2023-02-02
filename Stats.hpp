@@ -57,6 +57,7 @@ public:
   const T &operator[](const std::string stname) const {
     std::string lowName = stname;
     switch (stname) {
+    case "HP":
     case "hp":
       return hp;
       break;
