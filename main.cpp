@@ -17,7 +17,7 @@
   using ArgParser::getArgs;                                                    \
   using ArgParser::hasKey;
 
-std::ostream &operator<<(std::ostream &stream, const Poke::Stats &stats) {
+std::ostream &operator<<(std::ostream &stream, const Poke::iStats &stats) {
   stream << "HP: " << stats.hp << '\n'
          << "Attack: " << stats.atk << '\n'
          << "Defense: " << stats.def << '\n'
@@ -40,10 +40,17 @@ int main(int argc, char const *argv[]) {
     }
     cout << "]\n";
   }
-  Poke::Pokemon pokemon(77, Poke::Stats(76, 110, 70, 81, 70, 123),
-                        Poke::Stats(1, 18, 24, 3, 16, 31),
-                        Poke::Stats(93, 129, 126, 48, 25, 89));
-  cout << pokemon.getStats();
+  Poke::Pokemon pokemon(100, Poke::iStats(76, 110, 70, 81, 70, 123),
+                        Poke::iStats(1, 18, 24, 3, 16, 31),
+                        Poke::iStats(168, 228, 0, 0, 0, 114),
+                        //Poke::iStats(93, 129, 126, 48, 25, 89),
+                        Poke::NatureEnum::Serious);
+  // Poke::Pokemon pokemon(100, Poke::iStats(106, 110, 90, 154, 90, 130),
+  //                       Poke::BEST_IVS,
+  //                       Poke::MAX_EVS, Poke::NatureEnum::Modest);
+  cout << pokemon.getStats() << '\n';
+  cout << pokemon.getMaxStats(100) << '\n';
+  cout << pokemon.getMinStats(100) << '\n';
   /*
   PokeData database("pokedata.db");
   std::string query = "A pokemon name"
