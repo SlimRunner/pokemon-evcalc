@@ -17,10 +17,10 @@ private:
   Characteristic m_character;
   */
 public:
-  iStats base;
-  iStats IVs;
-  iStats EVs;
-  iStats fixmod;
+  const iStats base;
+  const iStats IVs;
+  const iStats EVs;
+  const iStats fixmod;
   // bStats hyperT;
 
   // Pokemon();
