@@ -3,6 +3,7 @@
 #include <sstream>
 #include <string>
 
+#include "PokeDex.hpp"
 #include "Pokemon.hpp"
 #include "argParser.hpp"
 
@@ -40,6 +41,8 @@ int main(int argc, char const *argv[]) {
     }
     cout << "]\n";
   }
+  
+  Poke::PokeNames::Meowscarada;
   Poke::Pokemon pokemon(100, Poke::iStats(76, 110, 70, 81, 70, 123),
                         Poke::iStats(1, 18, 24, 3, 16, 31),
                         Poke::iStats(168, 228, 0, 0, 0, 114),
