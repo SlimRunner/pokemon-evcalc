@@ -1,5 +1,5 @@
 ifdef OS
-	RM = del /Q
+	RM = del /Q /S
 	FixPath = $(subst /,\,$1)
 else
 	ifeq ($(shell uname), Linux)
