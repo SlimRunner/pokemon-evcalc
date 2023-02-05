@@ -1,8 +1,9 @@
 #if !defined(STATS)
 #define STATS
 
-#include <string>
+#include <array>
 #include <stdexcept>
+#include <string>
 
 namespace Poke {
 
@@ -23,6 +24,11 @@ public:
   }
   Stats(T h, T a, T d, T sa, T sd, T sp)
       : hp(h), atk(a), def(d), spAtk(sa), spDef(sd), spd(sp) {
+    /* nothing to do */
+  }
+  Stats(std::array<T, 6> stats)
+      : hp(stats[0]), atk(stats[1]), def(stats[2]), spAtk(stats[3]),
+        spDef(stats[4]), spd(stats[5]) {
     /* nothing to do */
   }
 

@@ -42,8 +42,11 @@ int main(int argc, char const *argv[]) {
     cout << "]\n";
   }
   
-  // Poke::PokeNames::Meowscarada;
-  Poke::Pokemon pokemon(100, Poke::iStats(76, 110, 70, 81, 70, 123),
+  auto thisPokemon = Poke::PokeNames::Meowscarada;
+  auto thisBaseStats = Poke::getStatsByPokemon(thisPokemon);
+  cout << "Meowscarada Base Stats" << '\n';
+  cout << thisBaseStats << '\n';
+  Poke::Pokemon pokemon(100, thisBaseStats,
                         Poke::iStats(1, 18, 24, 3, 16, 31),
                         Poke::iStats(168, 228, 0, 0, 0, 114),
                         //Poke::iStats(93, 129, 126, 48, 25, 89),
@@ -54,6 +57,7 @@ int main(int argc, char const *argv[]) {
   cout << pokemon.getStats() << '\n';
   cout << pokemon.getMaxStats(100) << '\n';
   cout << pokemon.getMinStats(100) << '\n';
+  
   /*
   PokeData database("pokedata.db");
   std::string query = "A pokemon name"
