@@ -79,6 +79,7 @@ https://bulbapedia.bulbagarden.net/wiki/List_of_Pok%C3%A9mon_by_National_Pok%C3%
   
   console.log(tokenized);
   window.tokenized = tokenized;
+  window.regNames = regNames;
 
   const ndex = `enum class PokeNames {\n  ${tokenized.flat().map((e, i) => `${e.token} = ${e.id}`).join(",\n  ")}\n};`
   const gdexes = `const vector<>`

@@ -1,16 +1,19 @@
-ifdef OS
-	RM = del /Q /S
-	FixPath = $(subst /,\,$1)
+ifeq ($(OS),Windows_NT)
+	detected_OS := Windows
 else
-	ifeq ($(shell uname), Linux)
-		RM = rm -f
-		FixPath = $1
-	endif
+	detected_OS := $(shell sh -c 'uname 2>/dev/null || echo Unknown')
 endif
 
-define MD
-	$(if OS,if not exist $1 mkdir $1,mkdir -p $1)
-endef
+ifeq ($(detected_OS),Windows)
+	RM = del /Q /S
+	FixPath = $(subst /,\,$1)
+	MD = if not exist $1 mkdir $1
+endif
+ifeq ($(detected_OS),Linux)
+	RM = rm -rf
+ 	FixPath = $1
+	MD = mkdir -p $1
+endif
 
 CXX := g++
 CXXFLAGS := -pedantic-errors -Wall -Wextra -Werror
@@ -54,8 +57,9 @@ clean:
 	$(RM) $(call FixPath,$(APP_DIR)/*)
 
 info:
-	echo "[*] Application dir: ${APP_DIR}     "
-	echo "[*] Object dir:      ${OBJ_DIR}     "
-	echo "[*] Sources:         ${SRC}         "
-	echo "[*] Objects:         ${OBJECTS}     "
-	echo "[*] Dependencies:    ${DEPENDENCIES}"
+	@echo "[*] Application dir: ${APP_DIR}"
+	@echo "[*] Object dir:      ${OBJ_DIR}"
+	@echo "[*] Sources:         ${SRC}"
+	@echo "[*] Objects:         ${OBJECTS}"
+	@echo "[*] Dependencies:    ${DEPENDENCIES}"
+	@echo "[*] Detected OS:     ${detected_OS}"
